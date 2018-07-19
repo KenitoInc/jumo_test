@@ -11,6 +11,11 @@ def authorize(func):
     def decorated_function(*args, **kwargs):
         api_key = request.headers.get('API key')
 
+
+        print("****" * 40)
+        print(request.json)
+        print("****" * 40)
+
         #Hardcoded API key for testing
         if api_key != "P9H6tqQmX7atj5snuHTGL6ru4Vqh6r":
             abort(401)
@@ -85,7 +90,7 @@ def api_user(id):
 
 
 @api.route('/airtime/send', methods=['POST'])
-@authorize
+#@authorize
 def api_send_airtime():
     if not request.json:
         abort(400)

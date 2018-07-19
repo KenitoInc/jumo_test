@@ -31,15 +31,13 @@ def send_airtime():
 
 
 def post_transaction(emp_list):
-    pl = {}
-    pl["username"] = "jumo"
-    pl["recipients"] = emp_list
-    p = json.dumps(pl)
-    payload = json.loads(p)
-    print(payload)
-    print(type(payload))
-    headers = {"API key": "P9H6tqQmX7atj5snuHTGL6ru4Vqh6r"}
-    response = requests.post(BASE_URL+"/api/airtime/send", json=payload, headers=headers)
+    payload = {
+        'username': 'jumo',
+        'recipients': emp_list
+    }
+
+    headers = {"API key": "P9H6tqQmX7atj5snuHTGL6ru4Vqh6r", "Content-Type": 'application/json'}
+    response = requests.post(url=BASE_URL+"/api/airtime/send", json=payload, headers=headers)
     status = response.status_code
 
     return status
